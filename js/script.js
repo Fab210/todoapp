@@ -16,9 +16,11 @@ form.addEventListener('submit',event => {
     const li = document.createElement('li')
 
     li.setAttribute("id", 'task' + obj.id);
+    li.setAttribute("class", 'list-group-item d-flex justify-content-between align-items-center')
+
     const btn = document.createElement('button')
-    
-    btn.innerHTML = "CLICK ME";
+    btn.setAttribute("class", 'btn btn-danger')
+    btn.innerHTML = "<i class='bi bi-trash'></i>";
     btn.onclick = function(){
         deleteTask(obj.id)
     }
