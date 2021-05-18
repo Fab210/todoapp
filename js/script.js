@@ -4,7 +4,7 @@
 let allTasks = [];
 const form = document.getElementById('form');
 const todoText = document.getElementById('todoText');
-const ul = document.getElementById('todoList');
+const tasksDiv = document.getElementById('todoList');
 let taskid = 0
 
 //
@@ -22,52 +22,51 @@ function getTodolistLocalstorage() {
     if (allTasks != null) {
         for (let i = 0; i < allTasks.length; i++) {
 
-            const li = document.createElement('li')
+            const div = document.createElement('div')
             const btn = document.createElement('button')
             const checkbox = document.createElement('input')
+            const label = document.createElement('label')
 
 
-            li.setAttribute("id", allTasks[i].id);
-            li.setAttribute("class", 'list-group-item d-flex justify-content-between align-items-center')
+            div.setAttribute("id", allTasks[i].id);
+            div.setAttribute("class", 'align-items-center')
 
 
             checkbox.setAttribute("type", "checkbox");
             checkbox.setAttribute("id", "checkbox" + allTasks[i].id);
 
             checkbox.onclick = function () {
-                const liElem = document.getElementById("checkbox" + allTasks[i].id).checked;
+                const divElem = document.getElementById("checkbox" + allTasks[i].id).checked;
                 //obj.checked = liElem
 
                 allTasks = JSON.parse(window.localStorage.getItem('todoList'));
                 
 
-                allTasks[i].checked = liElem
+                allTasks[i].checked = divElem
 
                 window.localStorage.setItem('todoList', JSON.stringify(allTasks));
-                //const selectedCheckbox = liElem.querySelector('input[type=checkbox]')
-
-                //liElem.checked = true
-
-
-
             }
+
+            label.htmlFor =  "checkbox" + allTasks[i].id ;
+            label.innerHTML = allTasks[i].text;
             //
             // ─── DOMCONTENTLOADED TO LOAD CHECKBOX INTO DOM AFTER ITS CREATED 
             //https://stackoverflow.com/questions/45873747/typeerror-cannot-set-property-checked-of-null-for-checkbox
             document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("checkbox" + allTasks[i].id).checked = allTasks[i].checked
             });
-            
+
+           
             btn.setAttribute("class", 'btn btn-danger')
             btn.innerHTML = "<i class='bi bi-trash'></i>";
             btn.onclick = function () {
                 deleteTask(allTasks[i].id)
             }
-            li.appendChild(checkbox)
-            li.appendChild(document.createTextNode(allTasks[i].text))
-            li.appendChild(btn)
+            div.appendChild(checkbox)
+            div.appendChild(label)
+            div.appendChild(btn)
 
-            ul.appendChild(li);
+            tasksDiv.appendChild(div);
             taskid = taskid + 1
         }
     } else {
@@ -113,46 +112,46 @@ form.addEventListener('submit', event => {
     todoText.value = ''
 
     //create li and button element to add on list
-    const li = document.createElement('li')
+    const div = document.createElement('div')
     const btn = document.createElement('button')
     const checkbox = document.createElement('input')
+    const label = document.createElement('label')
+ 
 
 
-    li.setAttribute("id", obj.id);
-    li.setAttribute("class", 'list-group-item d-flex justify-content-between align-items-center')
+    div.setAttribute("id", obj.id);
+    div.setAttribute("class", 'align-items-center')
 
 
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("id", "checkbox" + obj.id);
     checkbox.onclick = function () {
-        const liElem = document.getElementById("checkbox" + obj.id).checked;
+        const divElem = document.getElementById("checkbox" + obj.id).checked;
         //obj.checked = liElem
 
         allTasks = JSON.parse(window.localStorage.getItem('todoList'));
         debugger
         for (let i = 0; i < allTasks.length; i++) {
             if (obj.id === allTasks[i].id) {
-                allTasks[i].checked = liElem
+                allTasks[i].checked = divElem
             };
         }
         window.localStorage.setItem('todoList', JSON.stringify(allTasks));
-        //const selectedCheckbox = liElem.querySelector('input[type=checkbox]')
-
-        //liElem.checked = true
-
-
-
     }
+
+    label.htmlFor =  "checkbox" + obj.id ;
+    label.innerHTML = obj.text;
+
     btn.setAttribute("class", 'btn btn-danger')
     btn.innerHTML = "<i class='bi bi-trash'></i>";
     btn.onclick = function () {
         deleteTask(obj.id)
     }
-    li.appendChild(checkbox)
-    li.appendChild(document.createTextNode(obj.text))
-    li.appendChild(btn)
+    div.appendChild(checkbox)
+    div.appendChild(label)
+    div.appendChild(btn)
 
-    ul.appendChild(li);
+    tasksDiv.appendChild(div);
     taskid = taskid + 1
 })
 
