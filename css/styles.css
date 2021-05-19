@@ -1,21 +1,85 @@
-.formular{
-    margin-top: 50px;
+body {
+  background-color: #e8e8e8;
 }
 
-
-ul{
-    list-style:none;
-    margin-top: 40px;
+.formular {
+  margin-top: 50px;
 }
 
-.btn{
-    float: right;
+#form > div{
+    padding: 15px;
 }
 
-.align-items-center{
-    padding:12px
+#form > div > div{
+    padding-left: 30px;
 }
 
-label{
-    padding-left: 12px;
+.title {
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.btn {
+  float: right;
+}
+
+.align-items-center {
+  padding: 15px;
+}
+
+label {
+  padding-left: 12px;
+}
+
+#todoList {
+  margin-top: 30px;
+}
+
+.letter {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin: 26px auto 0;
+
+  padding: 24px;
+  position: relative;
+  width: 80%;
+  font-family: courier, monospace;
+  border: 1px solid #dedede;
+}
+
+.letter:before,
+.letter:after {
+  content: "";
+  height: 98%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.letter:before {
+  background: #fafafa;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  left: -5px;
+  top: 4px;
+  transform: rotate(-2.5deg);
+}
+
+.letter:after {
+  background: #f6f6f6;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  right: -3px;
+  top: 1px;
+  transform: rotate(1.4deg);
+}
+
+.paperStyle {
+  border-bottom: 1px dotted #ccc;
+  text-indent: 25px;
+  height: auto;
+
+  text-transform: capitalize;
 }

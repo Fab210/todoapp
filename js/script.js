@@ -29,7 +29,7 @@ function getTodolistLocalstorage() {
 
 
             div.setAttribute("id", allTasks[i].id);
-            div.setAttribute("class", 'align-items-center')
+            div.setAttribute("class", 'align-items-center paperStyle clearfix')
 
 
             checkbox.setAttribute("type", "checkbox");
@@ -59,8 +59,10 @@ function getTodolistLocalstorage() {
            
             btn.setAttribute("class", 'btn btn-danger')
             btn.innerHTML = "<i class='bi bi-trash'></i>";
+            let idtodelete = allTasks[i].id 
             btn.onclick = function () {
-                deleteTask(allTasks[i].id)
+                debugger
+                deleteTask(idtodelete)
             }
             div.appendChild(checkbox)
             div.appendChild(label)
@@ -117,20 +119,15 @@ form.addEventListener('submit', event => {
     const checkbox = document.createElement('input')
     const label = document.createElement('label')
  
-
-
     div.setAttribute("id", obj.id);
-    div.setAttribute("class", 'align-items-center')
-
+    div.setAttribute("class", 'align-items-center paperStyle clearfix ')
 
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("id", "checkbox" + obj.id);
     checkbox.onclick = function () {
         const divElem = document.getElementById("checkbox" + obj.id).checked;
-        //obj.checked = liElem
 
         allTasks = JSON.parse(window.localStorage.getItem('todoList'));
-        debugger
         for (let i = 0; i < allTasks.length; i++) {
             if (obj.id === allTasks[i].id) {
                 allTasks[i].checked = divElem
